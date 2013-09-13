@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<legend>Generating Token for DropBox Core API </legend>
+<body ng-controller="dpboxController">
+<div>
+<li><a href="https://www.dropbox.com/developers">Check DropBox API Documentation</a></li>
+</div>
+<div class="alert alert-warning">
+
+<li>You must done login in your dropbox account.Before starting the steps following</li>
+<li>Create a <a href="https://www.dropbox.com/developers/apps"> App Console</a></li> 
+<li>Question,suggestion or critical contact me <a href="http://www.github.com/camilolopes">GitHub</a> or <a href="http://www.camilolopes.com">www.camilolopes.com</a>
+</div>
+<form name="step1form" role="form"  >
+<div  class="form-group">
+<p class="help-block label label-default">
+Step 1 
+</p>
+</div>
+<div>
+<p class="help-block">
+Inform app_key and app_secret
+</p>
+</div>
+<div class="form-group">
+<label>APP_KEY</label>
+</div>
+<div>
+<input ng-model="key"  size="20" required >
+</div>
+<div class="form-group">
+<label>APP_SECRET</label> 
+</div>
+<div  class="form-group">
+<input ng-model="secret" required >
+</div>
+<div>
+<button type="submit" class="btn btn-default" ng-click="getUrl(key,secret)" 
+ng-disabled="step1form.$invalid">GenerateURL</button>
+</div>
+</form>
+
+<form name="step2form" >
+<div>
+<p class="help-block label label-default">
+Step 2 
+</p>
+</div>
+<div>
+<p class="help-block">Copy and paste the URL following in your browser. Dropbox Application will ask you allow or
+cancel access.Click Allow.</p>
+</div>
+<div  class="form-group">
+<label>Authorized URL</label>
+{{dropurl.authorizeUrl}}
+</div>
+<div  class="form-group">
+<label>Code Generated</label>
+</div>
+<div class="form-group">
+<input ng-model="code" name="step2form" required size="80">
+</div>
+<div>
+<button type="submit" class="btn btn-default" ng-click="getToken(code)" ng-disabled="step2form.$invalid">GenerateToken</button>
+</div>
+<div>
+<label>Token Generated</label>
+</div>
+<div class="alert alert-success" ng-show="dpbox!=null">
+{{dpbox.token}}
+</div>
+
+</form>
+</body>
+</html>
